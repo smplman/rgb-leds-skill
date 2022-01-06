@@ -1,4 +1,4 @@
-from mycroft import MycroftSkill, intent_file_handler
+from mycroft import MycroftSkill, intent_handler
 
 import time
 from rpi_ws281x import *
@@ -24,17 +24,20 @@ class RgbLeds(MycroftSkill):
 
 	def initialize(self):
 		#my_setting = self.settings.get('my_setting')
+		# self.register_entity_file('leds.rgb.intent')
 		# Create NeoPixel object with appropriate configuration.
 		self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 		# Intialize the library (must be called once before other functions).
 		self.strip.begin()
 
 
-	@intent_file_handler('leds.rgb.intent')
+	# @intent_file_handler('leds.rgb.intent')
+	@intent_handler('leds.rgb.intent')
 	def handle_leds_rgb(self, message):
+		colorSolid(self, self.strip, Color(255, 0, 0))
 		self.speak_dialog('leds.rgb')
 
-	def colorSolid(self, strip, color, wait_ms=50):
+	def colorSolid(self, strip, color):
 		"""Wipe color across display a pixel at a time."""
 		for i in range(strip.numPixels()):
 			strip.setPixelColor(i, color)
