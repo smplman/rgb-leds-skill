@@ -34,7 +34,7 @@ class RgbLeds(MycroftSkill):
 	# @intent_file_handler('leds.rgb.intent')
 	@intent_handler('leds.rgb.intent')
 	def handle_leds_rgb(self, message):
-		colorSolid(self, self.strip, Color(255, 0, 0))
+		self.colorSolid(self, self.strip, Color(255, 0, 0))
 		self.speak_dialog('leds.rgb')
 
 	def colorSolid(self, strip, color):
