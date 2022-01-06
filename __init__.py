@@ -37,7 +37,7 @@ class RgbLeds(MycroftSkill):
 		self.colorSolid(self.strip, Color(255, 0, 0))
 		self.speak_dialog('leds.rgb')
 
-	def colorSolid(strip, color):
+	def colorSolid(self, strip, color):
 		"""Wipe color across display a pixel at a time."""
 		for i in range(strip.numPixels()):
 			strip.setPixelColor(i, color)
