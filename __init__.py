@@ -49,7 +49,6 @@ class RgbLeds(MycroftSkill):
             r, g, b = self.hexToRGB(hex)
             self.log.info('rgb value: R ' + str(r) + ' G ' + str(g) + ' B ' + str(b))
 
-             
             self.colorSolid(Color(r, g, b))
             self.speak_dialog('leds.colors', {'color': color})
         else:
@@ -60,10 +59,10 @@ class RgbLeds(MycroftSkill):
         """Wipe color across display a pixel at a time."""
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
-            #strip.show()
+            self.strip.show()
             #time.sleep(wait_ms/1000.0)
 
-        self.strip.show
+        # self.strip.show
 
     # https://stackoverflow.com/a/29643643
     def hexToRGB(self, hex):
