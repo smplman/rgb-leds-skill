@@ -57,6 +57,7 @@ class RgbLeds(MycroftSkill):
 
     def colorSolid(self, color):
         self.strip.fill(color)
+        self.strip.show()
         """Wipe color across display a pixel at a time."""
         # for i in range(self.strip.numPixels()):
         #     self.strip.setPixelColor(i, color)
