@@ -45,7 +45,7 @@ class RgbLeds(MycroftSkill):
     def handle_leds_rgb(self, message):
         self.log.info('turning lights off')
         self.colorSolid(Color(0, 0, 0))
-        self.speak_dialog('leds.ff')
+        self.speak_dialog('leds.off')
 
     # Lights color
     @intent_handler('leds.colors.intent')
