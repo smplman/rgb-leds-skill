@@ -17,6 +17,7 @@ class RgbLeds(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
         self.strip = None
+        self.current_color = (255, 0, 0)
         # # Create NeoPixel object with appropriate configuration.
         # self.strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
         # # Intialize the library (must be called once before other functions).
@@ -32,13 +33,21 @@ class RgbLeds(MycroftSkill):
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
 
-    # @intent_file_handler('leds.rgb.intent')
-    @intent_handler('leds.rgb.intent')
+    # Lghts on
+    @intent_handler('leds.on.intent')
     def handle_leds_rgb(self, message):
         self.log.info('turning lights on')
-        self.colorSolid(Color(255, 0, 0))
-        self.speak_dialog('leds.rgb')
+        self.colorSolid(Color(*(self.current_color)))
+        self.speak_dialog('leds.on')
 
+    # Lights off
+    @intent_handler('leds.off.intent')
+    def handle_leds_rgb(self, message):
+        self.log.info('turning lights off')
+        self.colorSolid(Color(0, 0, 0))
+        self.speak_dialog('leds.ff')
+
+    # Lights color
     @intent_handler('leds.colors.intent')
     def handle_leds_color(self, message):
         color = message.data.get('color').lower()
@@ -46,15 +55,16 @@ class RgbLeds(MycroftSkill):
         if color is not None:
             hex = color_names[color]
             self.log.info('hex value: ' + hex)
-            r, g, b = self.hexToRGB(hex)
-            self.log.info('rgb value: R ' + str(r) + ' G ' + str(g) + ' B ' + str(b))
+            rgb = self.hexToRGB(hex)
+            self.current_color = rgb
+            # self.log.info('rgb value: R ' + str(r) + ' G ' + str(g) + ' B ' + str(b))
 
-            self.colorSolid(Color(r, g, b))
-            # self.strip.show
+            self.colorSolid(Color(*(rgb)))
+
             self.speak_dialog('leds.colors', {'color': color})
         else:
             print('color not found')
-            # self.speak_dialog('like.tomato.generic')
+            self.speak_dialog('leds.colors.notfound', {'color': color})
 
     def colorSolid(self, color):
         # self.strip.fill(color)
