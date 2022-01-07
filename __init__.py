@@ -1,6 +1,5 @@
 from mycroft import MycroftSkill, intent_handler
-import color_dictionary
-from color_dictionary import color_names
+from .color_dictionary import color_names
 import time
 from rpi_ws281x import *
 
