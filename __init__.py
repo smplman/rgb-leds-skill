@@ -50,7 +50,7 @@ class RgbLeds(MycroftSkill):
             self.log.info('rgb value: R ' + str(r) + ' G ' + str(g) + ' B ' + str(b))
 
             self.colorSolid(Color(r, g, b))
-            self.strip.show
+            # self.strip.show
             self.speak_dialog('leds.colors', {'color': color})
         else:
             print('color not found')
@@ -65,7 +65,7 @@ class RgbLeds(MycroftSkill):
             # self.strip.show()
             #time.sleep(wait_ms/1000.0)
 
-        # self.strip.show
+        self.strip.show()
 
     # https://stackoverflow.com/a/29643643
     def hexToRGB(self, hex):
