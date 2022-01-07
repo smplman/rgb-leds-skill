@@ -61,7 +61,7 @@ class RgbLeds(MycroftSkill):
         """Wipe color across display a pixel at a time."""
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
-        #     self.strip.show()
+            self.strip.show()
             #time.sleep(wait_ms/1000.0)
 
         self.strip.show
