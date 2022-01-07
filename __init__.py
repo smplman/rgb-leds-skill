@@ -72,11 +72,11 @@ class RgbLeds(MycroftSkill):
 
     # Mycroft start listening
     def _handle_listener_started(self, message):
-        self.colorSolid(Color(0,255,0))
+        self.colorSolid(Color(0,0,255))
 
     # Mycroft stop listening
     def _handle_listener_ended(self, message):
-        self.colorSolid(Color(self.current_color))
+        self.colorSolid(Color(*(self.current_color)))
 
     def colorSolid(self, color):
         # self.strip.fill(color)
