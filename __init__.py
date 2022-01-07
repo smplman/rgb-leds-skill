@@ -64,7 +64,7 @@ class RgbLeds(MycroftSkill):
         self.strip.show
 
     # https://stackoverflow.com/a/29643643
-    def hexToRGB(hex):
+    def hexToRGB(self, hex):
         h = hex.lstrip('#')
         return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
 
