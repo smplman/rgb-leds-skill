@@ -66,6 +66,14 @@ class RgbLeds(MycroftSkill):
             print('color not found')
             self.speak_dialog('leds.colors.notfound', {'color': color})
 
+    # Mycroft start listening
+    def _handle_listener_started(self, message):
+        self.colorSolid(Color(0,0,255))
+
+    # Mycroft stop listening
+    def _handle_listener_ended(self, message):
+        self.colorSolid(self.current_color)
+
     def colorSolid(self, color):
         # self.strip.fill(color)
         # self.strip.show()
