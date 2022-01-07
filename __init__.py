@@ -47,7 +47,7 @@ class RgbLeds(MycroftSkill):
             hex = color_names[color]
             self.log.info('hex value: ' + hex)
             r, g, b = self.hexToRGB(hex)
-            self.log.info('rgb value: R ' + r + ' G ' + g + ' B ' + b)
+            self.log.info('rgb value: R ' + str(r) + ' G ' + str(g) + ' B ' + str(b))
 
              
             self.colorSolid(Color(r, g, b))
