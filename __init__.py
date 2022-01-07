@@ -46,9 +46,11 @@ class RgbLeds(MycroftSkill):
         if color is not None:
             hex = color_names[color]
             self.log.info('hex value: ' + hex)
-            rgb = self.hexToRGB(hex)
-            self.log.info('rgb value: ' + rgb)
-            self.colorSolid(Color(rgb))
+            r, g, b = self.hexToRGB(hex)
+            self.log.info('rgb value: R ' + r + ' G ' + g + ' B ' + b)
+
+             
+            self.colorSolid(Color(r, g, b))
             self.speak_dialog('leds.colors', {'color': color})
         else:
             print('color not found')
