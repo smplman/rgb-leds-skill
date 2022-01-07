@@ -56,10 +56,11 @@ class RgbLeds(MycroftSkill):
             # self.speak_dialog('like.tomato.generic')
 
     def colorSolid(self, color):
+        self.strip.fill(color)
         """Wipe color across display a pixel at a time."""
-        for i in range(self.strip.numPixels()):
-            self.strip.setPixelColor(i, color)
-            self.strip.show()
+        # for i in range(self.strip.numPixels()):
+        #     self.strip.setPixelColor(i, color)
+        #     self.strip.show()
             #time.sleep(wait_ms/1000.0)
 
         # self.strip.show
