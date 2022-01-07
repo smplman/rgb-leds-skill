@@ -33,7 +33,6 @@ class RgbLeds(MycroftSkill):
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
 
-
     # @intent_file_handler('leds.rgb.intent')
     @intent_handler('leds.rgb.intent')
     def handle_leds_rgb(self, message):
