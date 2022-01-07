@@ -33,6 +33,10 @@ class RgbLeds(MycroftSkill):
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
 
+        # Catch events
+        self.add_event('recognizer_loop:record_begin', self._handle_listener_started)
+        self.add_event('recognizer_loop:record_end', self._handle_listener_ended)
+
     # Lghts on
     @intent_handler('leds.on.intent')
     def handle_leds_on(self, message):
