@@ -22,7 +22,7 @@ async def chat_message(sid, data):
 def disconnect(sid):
     print('disconnect ', sid)
 
-app.router.add_static('/static', 'static')
+# app.router.add_static('/static', 'static')
 app.router.add_get('/', index)
 
 if __name__ == '__main__':
