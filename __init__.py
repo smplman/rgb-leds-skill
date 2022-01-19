@@ -2,6 +2,8 @@ from mycroft import MycroftSkill, intent_handler
 from .color_dictionary import color_names
 import time
 from rpi_ws281x import *
+import asyncio
+import socketio
 
 # LED strip configuration:
 LED_COUNT      = 150      # Number of LED pixels.
@@ -12,6 +14,8 @@ LED_DMA        = 10      # DMA channel to use for generating signal (try 10)
 LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+
+sio = socketio.Client()
 
 class RgbLeds(MycroftSkill):
     def __init__(self):
@@ -24,6 +28,7 @@ class RgbLeds(MycroftSkill):
         # self.strip.begin()
 
     def initialize(self):
+        sio.connect('http://localhost:8080')
         self.log.info('Initializing rgb-leds-skill')
         #my_setting = self.settings.get('my_setting')
         # self.register_entity_file('leds.rgb.intent')
@@ -36,6 +41,10 @@ class RgbLeds(MycroftSkill):
         # Catch events
         self.add_event('recognizer_loop:record_begin', self._handle_listener_started)
         self.add_event('recognizer_loop:record_end', self._handle_listener_ended)
+
+    @sio.event
+    async def connect():
+        print('connection established')
 
     # Lghts on
     @intent_handler('leds.on.intent')
