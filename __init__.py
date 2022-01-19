@@ -33,16 +33,16 @@ class RgbLeds(MycroftSkill):
         def connect():
             print('socketio connection established')
 
-        # @self.sio.event
-        # def set_color(sid, hex):
-        #     print('set_color ', hex)
-        #     self.current_color = hex
+        @self.sio.event
+        def set_color(sid, hex):
+            print('set_color ', hex)
+            self.current_color = hex
 
     # Lghts on
     @intent_handler('leds.on.intent')
     def handle_leds_on(self, message):
         self.log.info('turning lights on')
-        self.sio.emit('set_color', current_color)
+        self.sio.emit('set_color', self.current_color)
         self.speak_dialog('leds.on')
 
     # Lights off
