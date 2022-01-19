@@ -43,7 +43,7 @@ class RgbLeds(MycroftSkill):
         self.add_event('recognizer_loop:record_end', self._handle_listener_ended)
 
     @sio.event
-    async def connect():
+    def connect():
         print('connection established')
 
     # Lghts on
