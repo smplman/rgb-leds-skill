@@ -12,9 +12,9 @@ class RgbLeds(MycroftSkill):
 
     def __init__(self):
         MycroftSkill.__init__(self)
-        self.current_color = '#000000'
 
     def initialize(self):
+        self.current_color = '#000000'
         self.sio_call_backs()
         self.sio.connect('http://localhost:8080')
         self.log.info('Initializing rgb-leds-skill')
@@ -33,10 +33,10 @@ class RgbLeds(MycroftSkill):
         def connect():
             print('socketio connection established')
 
-        @self.sio.event
-        def set_color(sid, hex):
-            print('set_color ', hex)
-            self.current_color = hex
+        # @self.sio.event
+        # def set_color(sid, hex):
+        #     print('set_color ', hex)
+        #     self.current_color = hex
 
     # Lghts on
     @intent_handler('leds.on.intent')
